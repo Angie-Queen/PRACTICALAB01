@@ -15,9 +15,11 @@ namespace PRACTICALAB01.Controllers
         
         private readonly DatabaseContext_context;
 
-        public FormularioController(ILogger<FormularioController> logger)
+        public FormularioController(ILogger<FormularioController> logger,
+            DatabaseContext context)
         {
             _logger = logger;
+            _context=context;
         }
         public IActionResult Formulario()
         {
@@ -27,6 +29,9 @@ namespace PRACTICALAB01.Controllers
          [HttpPost]
         public IActionResult Formulario( Formulario objFormulario){
          if(ModelState.IsValid){
+
+             _context.Add(objFormulario);
+             _context.SaveChanges();
              objFormulario.Respuesta="Se registraron sus datos en la Base de Datos.";
          }
          return View("Formulario",objFormulario);
