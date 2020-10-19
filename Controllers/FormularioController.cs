@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PRACTICALAB01.Models;
+using PRACTICALAB01.Data;
 namespace PRACTICALAB01.Controllers
 {
     public class FormularioController : Controller
     {
         private readonly ILogger<FormularioController> _logger;
+        
+        private readonly DatabaseContext_context;
 
         public FormularioController(ILogger<FormularioController> logger)
         {
